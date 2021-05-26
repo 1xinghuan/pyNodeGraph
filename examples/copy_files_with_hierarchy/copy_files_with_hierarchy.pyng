@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pynodegraph x="-330.0" y="-317.0">
+	<n c="Main" n="Main">
+		<p n="label" val="copy all file1.txt from src to dst under current folder"/>
+		<p n="x" val="-0.04320236432499769"/>
+		<p n="y" val="-317.0"/>
+		<o conN="Walk Dir" conP="In" n="Out"/>
+	</n>
+	<n c="Print" n="Print">
+		<p n="x" val="1163.5780245783433"/>
+		<p n="y" val="-285.0999042809014"/>
+		<p con="Replace.outputs:result" n="inputs:arg"/>
+		<o conN="If1" conP="In" n="Out"/>
+		<i conN="If" conP="True" n="In"/>
+		<i conN="Replace" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Get Current File" n="Get Current File">
+		<p n="x" val="-330.0"/>
+		<p n="y" val="-179.37204233959122"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/copy_files_with_hierarchy/copy_files_with_hierarchy.pyng"/>
+		<o conN="Get Path Dirname" conP="inputs:arg" n="outputs:result"/>
+	</n>
+	<n c="Get Path Dirname" n="Get Path Dirname">
+		<p n="x" val="-134.97443759087207"/>
+		<p n="y" val="-170.70536628887584"/>
+		<p con="Get Current File.outputs:result" n="inputs:arg"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/copy_files_with_hierarchy"/>
+		<o conN="Get Join Path1" conP="inputs:arg1" n="outputs:result"/>
+		<o conN="Get Join Path2" conP="inputs:arg1" n="outputs:result"/>
+		<i conN="Get Current File" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Walk Dir" n="Walk Dir">
+		<p n="x" val="297.6529680417143"/>
+		<p n="y" val="-309.7769174633181"/>
+		<p con="Get Join Path1.outputs:result" n="inputs:path"/>
+		<p n="outputs:root" val="D:/workspace/PyNodeGraph/examples/copy_files_with_hierarchy\src\aa\bbb"/>
+		<p n="outputs:dir" val="bbb"/>
+		<p n="outputs:file" val="file2.txt"/>
+		<o conN="If" conP="In" n="For Each File"/>
+		<o conN="Get Join Path" conP="inputs:arg1" n="outputs:root"/>
+		<o conN="Equal" conP="inputs:arg1" n="outputs:file"/>
+		<o conN="Get Join Path" conP="inputs:arg2" n="outputs:file"/>
+		<i conN="Main" conP="Out" n="In"/>
+		<i conN="Get Join Path1" conP="outputs:result" n="inputs:path"/>
+	</n>
+	<n c="If" n="If">
+		<p n="x" val="803.2771982572076"/>
+		<p n="y" val="-289.6255515919818"/>
+		<p con="Equal.outputs:result" n="inputs:arg"/>
+		<o conN="Print" conP="In" n="True"/>
+		<i conN="Walk Dir" conP="For Each File" n="In"/>
+		<i conN="Equal" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Equal" n="Equal">
+		<p n="x" val="553.9816658903128"/>
+		<p n="y" val="-146.63590356161978"/>
+		<p con="Walk Dir.outputs:file" n="inputs:arg1"/>
+		<p con="Var String.outputs:result" n="inputs:arg2"/>
+		<p n="outputs:result" val="False"/>
+		<o conN="If" conP="inputs:arg" n="outputs:result"/>
+		<i conN="Walk Dir" conP="outputs:file" n="inputs:arg1"/>
+		<i conN="Var String" conP="outputs:result" n="inputs:arg2"/>
+	</n>
+	<n c="Var String" n="Var String">
+		<p n="x" val="337.15439230972447"/>
+		<p n="y" val="-94.5957617700875"/>
+		<p n="outputs:result" val="file1.txt"/>
+		<o conN="Equal" conP="inputs:arg2" n="outputs:result"/>
+	</n>
+	<n c="Get Join Path" n="Get Join Path">
+		<p n="x" val="798.4420994387932"/>
+		<p n="y" val="-176.7764965491758"/>
+		<p con="Walk Dir.outputs:root" n="inputs:arg1"/>
+		<p con="Walk Dir.outputs:file" n="inputs:arg2"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/copy_files_with_hierarchy\src\aa\bbb\file1.txt"/>
+		<o conN="Copy File" conP="inputs:src" n="outputs:result"/>
+		<o conN="Replace" conP="inputs:string" n="outputs:result"/>
+		<i conN="Walk Dir" conP="outputs:root" n="inputs:arg1"/>
+		<i conN="Walk Dir" conP="outputs:file" n="inputs:arg2"/>
+	</n>
+	<n c="Copy File" n="Copy File">
+		<p n="x" val="2038.02387185552"/>
+		<p n="y" val="-191.0500579717638"/>
+		<p con="Get Join Path.outputs:result" n="inputs:src"/>
+		<p con="Replace.outputs:result" n="inputs:dst"/>
+		<i conN="Create Folder" conP="Out" n="In"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:src"/>
+		<i conN="Replace" conP="outputs:result" n="inputs:dst"/>
+	</n>
+	<n c="Get Join Path" n="Get Join Path1">
+		<p n="x" val="62.612710676541724"/>
+		<p n="y" val="-208.15567332042556"/>
+		<p con="Get Path Dirname.outputs:result" n="inputs:arg1"/>
+		<p n="inputs:arg2" val="src"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/copy_files_with_hierarchy\src"/>
+		<o conN="Walk Dir" conP="inputs:path" n="outputs:result"/>
+		<o conN="Replace" conP="inputs:from" n="outputs:result"/>
+		<i conN="Get Path Dirname" conP="outputs:result" n="inputs:arg1"/>
+	</n>
+	<n c="Get Join Path" n="Get Join Path2">
+		<p n="x" val="186.86041601096966"/>
+		<p n="y" val="34.37276412877199"/>
+		<p con="Get Path Dirname.outputs:result" n="inputs:arg1"/>
+		<p n="inputs:arg2" val="dst"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/copy_files_with_hierarchy\dst"/>
+		<o conN="Replace" conP="inputs:to" n="outputs:result"/>
+		<i conN="Get Path Dirname" conP="outputs:result" n="inputs:arg1"/>
+	</n>
+	<n c="Replace" n="Replace">
+		<p n="x" val="883.6563349140362"/>
+		<p n="y" val="-11.371702700839496"/>
+		<p con="Get Join Path.outputs:result" n="inputs:string"/>
+		<p con="Get Join Path1.outputs:result" n="inputs:from"/>
+		<p con="Get Join Path2.outputs:result" n="inputs:to"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/copy_files_with_hierarchy\dst\aa\bbb\file1.txt"/>
+		<o conN="Print" conP="inputs:arg" n="outputs:result"/>
+		<o conN="Copy File" conP="inputs:dst" n="outputs:result"/>
+		<o conN="Get Path Dirname1" conP="inputs:arg" n="outputs:result"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:string"/>
+		<i conN="Get Join Path1" conP="outputs:result" n="inputs:from"/>
+		<i conN="Get Join Path2" conP="outputs:result" n="inputs:to"/>
+	</n>
+	<n c="If" n="If1">
+		<p n="x" val="1523.0135961765297"/>
+		<p n="y" val="-100.09774071491896"/>
+		<p con="Does Path Exists.outputs:result" n="inputs:arg"/>
+		<o conN="Create Folder" conP="In" n="False"/>
+		<i conN="Print" conP="Out" n="In"/>
+		<i conN="Does Path Exists" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Does Path Exists" n="Does Path Exists">
+		<p n="x" val="1277.6858334981246"/>
+		<p n="y" val="-81.50835141748779"/>
+		<p con="Get Path Dirname1.outputs:result" n="inputs:arg"/>
+		<p n="outputs:result" val="False"/>
+		<o conN="If1" conP="inputs:arg" n="outputs:result"/>
+		<i conN="Get Path Dirname1" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Get Path Dirname" n="Get Path Dirname1">
+		<p n="x" val="1087.9590077899422"/>
+		<p n="y" val="39.091900343356485"/>
+		<p con="Replace.outputs:result" n="inputs:arg"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/copy_files_with_hierarchy\dst\aa\bbb"/>
+		<o conN="Does Path Exists" conP="inputs:arg" n="outputs:result"/>
+		<o conN="Create Folder" conP="inputs:path" n="outputs:result"/>
+		<i conN="Replace" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Create Folder" n="Create Folder">
+		<p n="x" val="1785.3788451955456"/>
+		<p n="y" val="16.381941126091718"/>
+		<p con="Get Path Dirname1.outputs:result" n="inputs:path"/>
+		<o conN="Copy File" conP="In" n="Out"/>
+		<i conN="If1" conP="False" n="In"/>
+		<i conN="Get Path Dirname1" conP="outputs:result" n="inputs:path"/>
+	</n>
+</pynodegraph>

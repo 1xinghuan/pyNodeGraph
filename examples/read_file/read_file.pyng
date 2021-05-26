@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pynodegraph x="-96.76071503600758" y="-319.454263597162">
+	<n c="Main" n="Main">
+		<p n="x" val="-3.339994550181558"/>
+		<p n="y" val="-319.454263597162"/>
+		<o conN="Open File" conP="In" n="Out"/>
+	</n>
+	<n c="Open File" n="Open File">
+		<p n="x" val="281.6401202103682"/>
+		<p n="y" val="-303.6962107287527"/>
+		<p con="Get Join Path.outputs:result" n="inputs:file"/>
+		<p n="inputs:mode" val="r"/>
+		<p n="outputs:result" val="&lt;_io.TextIOWrapper name='D:/workspace/PyNodeGraph/examples/read_file\\file.txt' mode='r' encoding='cp936'&gt;"/>
+		<o conN="For Loop" conP="In" n="Out"/>
+		<o conN="Read Lines" conP="inputs:file" n="outputs:result"/>
+		<i conN="Main" conP="Out" n="In"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:file"/>
+	</n>
+	<n c="Get Join Path" n="Get Join Path">
+		<p n="x" val="114.43736597439238"/>
+		<p n="y" val="-195.5355552006764"/>
+		<p con="Get Current Dir.outputs:result" n="inputs:arg1"/>
+		<p n="inputs:arg2" val="file.txt"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/read_file\file.txt"/>
+		<o conN="Open File" conP="inputs:file" n="outputs:result"/>
+		<i conN="Get Current Dir" conP="outputs:result" n="inputs:arg1"/>
+	</n>
+	<n c="Read Lines" n="Read Lines">
+		<p n="x" val="482.9825904195644"/>
+		<p n="y" val="-195.62957137049602"/>
+		<p con="Open File.outputs:result" n="inputs:file"/>
+		<p n="outputs:result" val="['This is a file\n', '1\n', '2\n', '3\n', 'aaa\n', 'bbb\n', 'ccc\n', '\n']"/>
+		<o conN="For Loop" conP="inputs:array" n="outputs:result"/>
+		<i conN="Open File" conP="outputs:result" n="inputs:file"/>
+	</n>
+	<n c="For Loop" n="For Loop">
+		<p n="x" val="697.1665276950902"/>
+		<p n="y" val="-313.4518084783914"/>
+		<p con="Read Lines.outputs:result" n="inputs:array"/>
+		<p n="outputs:index" val="7"/>
+		<p n="outputs:each" val="
+"/>
+		<o conN="Print" conP="In" n="For Each Loop"/>
+		<o conN="Print" conP="inputs:arg" n="outputs:each"/>
+		<i conN="Open File" conP="Out" n="In"/>
+		<i conN="Read Lines" conP="outputs:result" n="inputs:array"/>
+	</n>
+	<n c="Print" n="Print">
+		<p n="x" val="932.5153370323185"/>
+		<p n="y" val="-305.64873254839137"/>
+		<p con="For Loop.outputs:each" n="inputs:arg"/>
+		<i conN="For Loop" conP="For Each Loop" n="In"/>
+		<i conN="For Loop" conP="outputs:each" n="inputs:arg"/>
+	</n>
+	<n c="Get Current Dir" n="Get Current Dir">
+		<p n="x" val="-96.76071503600758"/>
+		<p n="y" val="-179.11766031142335"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/read_file"/>
+		<o conN="Get Join Path" conP="inputs:arg1" n="outputs:result"/>
+	</n>
+</pynodegraph>

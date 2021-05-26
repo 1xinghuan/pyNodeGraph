@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pynodegraph x="-280.27419440280573" y="-596.4540089579386">
+	<n c="Main" n="Main">
+		<p n="x" val="-158.84209059310945"/>
+		<p n="y" val="-258.9640432645028"/>
+		<o conN="For Loop" conP="In" n="Out"/>
+	</n>
+	<n c="Get Dir Content" n="Get Dir Content">
+		<p n="x" val="-75.09810225004333"/>
+		<p n="y" val="-146.4975306931667"/>
+		<p con="Get Current Dir.outputs:result" n="inputs:dir"/>
+		<p n="outputs:result" val="['main.pyng', 'newName01.txt', 'newName02.txt', 'newName03.txt', 'newName04.txt', 'newName05.txt']"/>
+		<o conN="For Loop" conP="inputs:array" n="outputs:result"/>
+		<i conN="Get Current Dir" conP="outputs:result" n="inputs:dir"/>
+	</n>
+	<n c="For Loop" n="For Loop">
+		<p n="x" val="110.30189774995642"/>
+		<p n="y" val="-253.4248034204394"/>
+		<p con="Get Dir Content.outputs:result" n="inputs:array"/>
+		<p n="outputs:index" val="5"/>
+		<p n="outputs:each" val="newName05.txt"/>
+		<o conN="Print" conP="In" n="For Each Loop"/>
+		<o conN="Get Join Path" conP="inputs:arg2" n="outputs:each"/>
+		<o conN="Replace" conP="inputs:string" n="outputs:each"/>
+		<i conN="Main" conP="Out" n="In"/>
+		<i conN="Get Dir Content" conP="outputs:result" n="inputs:array"/>
+	</n>
+	<n c="Print" n="Print">
+		<p n="x" val="606.6655341135928"/>
+		<p n="y" val="-253.4248034204395"/>
+		<p con="Get Join Path.outputs:result" n="inputs:arg"/>
+		<o conN="Print1" conP="In" n="Out"/>
+		<i conN="For Loop" conP="For Each Loop" n="In"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Get Join Path" n="Get Join Path">
+		<p n="x" val="390.30189774995677"/>
+		<p n="y" val="-164.33389432953035"/>
+		<p con="Get Current Dir.outputs:result" n="inputs:arg1"/>
+		<p con="For Loop.outputs:each" n="inputs:arg2"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/batch_rename\newName05.txt"/>
+		<o conN="Print" conP="inputs:arg" n="outputs:result"/>
+		<o conN="Rename File" conP="inputs:src" n="outputs:result"/>
+		<i conN="Get Current Dir" conP="outputs:result" n="inputs:arg1"/>
+		<i conN="For Loop" conP="outputs:each" n="inputs:arg2"/>
+	</n>
+	<n c="Rename File" n="Rename File">
+		<p n="x" val="1069.4928068408653"/>
+		<p n="y" val="-250.84298523862128"/>
+		<p con="Get Join Path.outputs:result" n="inputs:src"/>
+		<p con="Get Join Path1.outputs:result" n="inputs:dst"/>
+		<i conN="Print1" conP="Out" n="In"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:src"/>
+		<i conN="Get Join Path1" conP="outputs:result" n="inputs:dst"/>
+	</n>
+	<n c="Replace" n="Replace">
+		<p n="x" val="380.3200795681381"/>
+		<p n="y" val="-51.49753069316672"/>
+		<p con="For Loop.outputs:each" n="inputs:string"/>
+		<p n="inputs:from" val="name"/>
+		<p n="inputs:to" val="newName"/>
+		<p n="outputs:result" val="name05.txt"/>
+		<o conN="Get Join Path1" conP="inputs:arg2" n="outputs:result"/>
+		<i conN="For Loop" conP="outputs:each" n="inputs:string"/>
+	</n>
+	<n c="Get Join Path" n="Get Join Path1">
+		<p n="x" val="563.4440770748818"/>
+		<p n="y" val="35.98315013930585"/>
+		<p con="Get Current Dir.outputs:result" n="inputs:arg1"/>
+		<p con="Replace.outputs:result" n="inputs:arg2"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/batch_rename\name05.txt"/>
+		<o conN="Rename File" conP="inputs:dst" n="outputs:result"/>
+		<o conN="Print1" conP="inputs:arg" n="outputs:result"/>
+		<i conN="Get Current Dir" conP="outputs:result" n="inputs:arg1"/>
+		<i conN="Replace" conP="outputs:result" n="inputs:arg2"/>
+	</n>
+	<n c="Print" n="Print1">
+		<p n="x" val="837.43826138632"/>
+		<p n="y" val="-252.6066216022577"/>
+		<p con="Get Join Path1.outputs:result" n="inputs:arg"/>
+		<o conN="Rename File" conP="In" n="Out"/>
+		<i conN="Print" conP="Out" n="In"/>
+		<i conN="Get Join Path1" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Backdrop" n="Backdrop">
+		<p n="label" val="rename the files from 'name' to 'newName' under this folder"/>
+		<p n="labelFontSize" val="30"/>
+		<p n="x" val="-131.03913833166834"/>
+		<p n="y" val="-596.4540089579386"/>
+		<p n="width" val="1072.5279398742646"/>
+		<p n="height" val="201.33231606491347"/>
+	</n>
+	<n c="Get Current Dir" n="Get Current Dir">
+		<p n="x" val="-280.27419440280573"/>
+		<p n="y" val="-50.002130251340546"/>
+		<o conN="Get Dir Content" conP="inputs:dir" n="outputs:result"/>
+		<o conN="Get Join Path" conP="inputs:arg1" n="outputs:result"/>
+		<o conN="Get Join Path1" conP="inputs:arg1" n="outputs:result"/>
+	</n>
+</pynodegraph>
