@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pynodegraph x="-330.8944552017049" y="-317.0">
+	<n c="Main" n="Main">
+		<p n="x" val="-330.0"/>
+		<p n="y" val="-306.2"/>
+		<o conN="Walk Dir" conP="In" n="Out"/>
+	</n>
+	<n c="Walk Dir" n="Walk Dir">
+		<p n="x" val="73.01818181818169"/>
+		<p n="y" val="-307.19999999999993"/>
+		<p con="Get Current Dir.outputs:result" n="inputs:path"/>
+		<p n="outputs:root" val="D:/workspace/PyNodeGraph/examples/batch_remove_file\a - Copy (2)\b - Copy"/>
+		<p n="outputs:dir" val="b - Copy"/>
+		<p n="outputs:file" val="b.txt"/>
+		<o conN="If" conP="In" n="For Each File"/>
+		<o conN="Get Join Path" conP="inputs:arg1" n="outputs:root"/>
+		<o conN="Get Join Path" conP="inputs:arg2" n="outputs:file"/>
+		<i conN="Main" conP="Out" n="In"/>
+		<i conN="Get Current Dir" conP="outputs:result" n="inputs:path"/>
+	</n>
+	<n c="Get Current Dir" n="Get Current Dir">
+		<p n="x" val="-260.36363636363626"/>
+		<p n="y" val="-171.65454545454543"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/batch_remove_file"/>
+		<o conN="Walk Dir" conP="inputs:path" n="outputs:result"/>
+	</n>
+	<n c="Ends With" n="Ends With">
+		<p n="x" val="540.1852066115703"/>
+		<p n="y" val="-247.3996115702478"/>
+		<p con="Get Join Path.outputs:result" n="inputs:string"/>
+		<p n="inputs:suffix" val="a.txt"/>
+		<p n="outputs:result" val="False"/>
+		<o conN="If" conP="inputs:arg" n="outputs:result"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:string"/>
+	</n>
+	<n c="Get Join Path" n="Get Join Path">
+		<p n="x" val="301.32239669421483"/>
+		<p n="y" val="-171.6706859504132"/>
+		<p con="Walk Dir.outputs:root" n="inputs:arg1"/>
+		<p con="Walk Dir.outputs:file" n="inputs:arg2"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/batch_remove_file\a - Copy (2)\b - Copy\b.txt"/>
+		<o conN="Ends With" conP="inputs:string" n="outputs:result"/>
+		<o conN="Print" conP="inputs:arg" n="outputs:result"/>
+		<o conN="Remove File" conP="inputs:path" n="outputs:result"/>
+		<i conN="Walk Dir" conP="outputs:root" n="inputs:arg1"/>
+		<i conN="Walk Dir" conP="outputs:file" n="inputs:arg2"/>
+	</n>
+	<n c="If" n="If">
+		<p n="x" val="767.5999999999999"/>
+		<p n="y" val="-317.0"/>
+		<p con="Ends With.outputs:result" n="inputs:arg"/>
+		<o conN="Print" conP="In" n="True"/>
+		<i conN="Walk Dir" conP="For Each File" n="In"/>
+		<i conN="Ends With" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Print" n="Print">
+		<p n="x" val="987.8181818181818"/>
+		<p n="y" val="-179.83636363636361"/>
+		<p con="Get Join Path.outputs:result" n="inputs:arg"/>
+		<o conN="Remove File" conP="In" n="Out"/>
+		<i conN="If" conP="True" n="In"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Remove File" n="Remove File">
+		<p n="x" val="1224.1152091657411"/>
+		<p n="y" val="-69.65976312672154"/>
+		<p con="Get Join Path.outputs:result" n="inputs:path"/>
+		<i conN="Print" conP="Out" n="In"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:path"/>
+	</n>
+	<n c="Backdrop" n="Backdrop">
+		<p n="label" val="remove all a.txt under current folder"/>
+		<p n="labelFontSize" val="50"/>
+		<p n="x" val="-330.8944552017049"/>
+		<p n="y" val="33.72172791864514"/>
+		<p n="width" val="1118.0536968439083"/>
+		<p n="height" val="352.64950839047384"/>
+	</n>
+</pynodegraph>
