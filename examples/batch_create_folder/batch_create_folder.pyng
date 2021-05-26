@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pynodegraph x="-348.0" y="-317.0">
+	<n c="Main" n="Main">
+		<p n="x" val="-348.0"/>
+		<p n="y" val="25.70315204829444"/>
+		<o conN="For Loop" conP="In" n="Out"/>
+	</n>
+	<n c="Var String" n="subs">
+		<p n="x" val="-313.25636673970916"/>
+		<p n="y" val="151.699185388268"/>
+		<p n="outputs:result" val="dir1 dir2 dir3 dir4"/>
+		<o conN="Split" conP="inputs:string" n="outputs:result"/>
+	</n>
+	<n c="For Loop" n="For Loop">
+		<p n="x" val="71.18705925578274"/>
+		<p n="y" val="24.56101859638227"/>
+		<p con="Split.outputs:result" n="inputs:array"/>
+		<p n="outputs:index" val="3"/>
+		<p n="outputs:each" val="dir4"/>
+		<o conN="Var String Array" conP="In" n="For Each Loop"/>
+		<o conN="Var String Array" conP="inputs:arg0" n="outputs:each"/>
+		<i conN="Main" conP="Out" n="In"/>
+		<i conN="Split" conP="outputs:result" n="inputs:array"/>
+	</n>
+	<n c="Split" n="Split">
+		<p n="x" val="-96.58281302070122"/>
+		<p n="y" val="134.70166472711102"/>
+		<p con="subs.outputs:result" n="inputs:string"/>
+		<p n="inputs:split" val=" "/>
+		<p n="outputs:result" val="['dir1', 'dir2', 'dir3', 'dir4']"/>
+		<o conN="For Loop" conP="inputs:array" n="outputs:result"/>
+		<i conN="subs" conP="outputs:result" n="inputs:string"/>
+	</n>
+	<n c="Print" n="Print">
+		<p n="x" val="878.3155340867368"/>
+		<p n="y" val="25.040507702317598"/>
+		<p con="Get Join Path.outputs:result" n="inputs:arg"/>
+		<o conN="If" conP="In" n="Out"/>
+		<i conN="Var String Array" conP="Out" n="In"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Var String Array" n="Var String Array">
+		<p n="x" val="275.9857678428802"/>
+		<p n="y" val="28.760107139861645"/>
+		<p n="outputs:result" val="['dir4', 'a', 'b', 'c']"/>
+		<p con="For Loop.outputs:each" cus="True" n="inputs:arg0" t="str"/>
+		<p cus="True" n="inputs:arg1" t="str" val="a"/>
+		<p cus="True" n="inputs:arg2" t="str" val="b"/>
+		<p cus="True" n="inputs:arg3" t="str" val="c"/>
+		<o conN="Print" conP="In" n="Out"/>
+		<o conN="Join" conP="inputs:array" n="outputs:result"/>
+		<i conN="For Loop" conP="For Each Loop" n="In"/>
+		<i conN="For Loop" conP="outputs:each" n="inputs:arg0"/>
+	</n>
+	<n c="Join" n="Join">
+		<p n="x" val="494.5249230791998"/>
+		<p n="y" val="211.3732841993602"/>
+		<p n="inputs:split" val="/"/>
+		<p con="Var String Array.outputs:result" n="inputs:array"/>
+		<p n="outputs:result" val="dir4/a/b/c"/>
+		<o conN="Get Join Path" conP="inputs:arg2" n="outputs:result"/>
+		<i conN="Var String Array" conP="outputs:result" n="inputs:array"/>
+	</n>
+	<n c="Get Join Path" n="Get Join Path">
+		<p n="x" val="702.8790072384908"/>
+		<p n="y" val="167.7445766361755"/>
+		<p con="Get Current Dir.outputs:result" n="inputs:arg1"/>
+		<p con="Join.outputs:result" n="inputs:arg2"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/batch_create_folder\dir4/a/b/c"/>
+		<o conN="Print" conP="inputs:arg" n="outputs:result"/>
+		<o conN="Does Path Exists" conP="inputs:arg" n="outputs:result"/>
+		<o conN="Create Folder" conP="inputs:path" n="outputs:result"/>
+		<i conN="Get Current Dir" conP="outputs:result" n="inputs:arg1"/>
+		<i conN="Join" conP="outputs:result" n="inputs:arg2"/>
+	</n>
+	<n c="Create Folder" n="Create Folder">
+		<p n="x" val="1305.8427316825296"/>
+		<p n="y" val="165.25403136873388"/>
+		<p con="Get Join Path.outputs:result" n="inputs:path"/>
+		<i conN="If" conP="False" n="In"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:path"/>
+	</n>
+	<n c="If" n="If">
+		<p n="x" val="1118.6904401723866"/>
+		<p n="y" val="25.86905766475195"/>
+		<p con="Does Path Exists.outputs:result" n="inputs:arg"/>
+		<o conN="Create Folder" conP="In" n="False"/>
+		<i conN="Print" conP="Out" n="In"/>
+		<i conN="Does Path Exists" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Does Path Exists" n="Does Path Exists">
+		<p n="x" val="913.7693282264814"/>
+		<p n="y" val="106.6654513537076"/>
+		<p con="Get Join Path.outputs:result" n="inputs:arg"/>
+		<p n="outputs:result" val="False"/>
+		<o conN="If" conP="inputs:arg" n="outputs:result"/>
+		<i conN="Get Join Path" conP="outputs:result" n="inputs:arg"/>
+	</n>
+	<n c="Backdrop" n="Backdrop">
+		<p n="label" val="create folders&lt;\n&gt;batch_create_folder\dir1/a/b/c&lt;\n&gt;batch_create_folder\dir2/a/b/c&lt;\n&gt;batch_create_folder\dir3/a/b/c&lt;\n&gt;batch_create_folder\dir4/a/b/c"/>
+		<p n="x" val="-340.0634861331068"/>
+		<p n="y" val="-317.0"/>
+		<p n="width" val="697.2213913558868"/>
+		<p n="height" val="276.1037436049411"/>
+	</n>
+	<n c="Get Current Dir" n="Get Current Dir">
+		<p n="x" val="502.7331994422194"/>
+		<p n="y" val="138.03230783404524"/>
+		<p n="outputs:result" val="D:/workspace/PyNodeGraph/examples/batch_create_folder"/>
+		<o conN="Get Join Path" conP="inputs:arg1" n="outputs:result"/>
+	</n>
+</pynodegraph>

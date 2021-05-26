@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+
+import os
+import sys
+
+pylibPath = os.path.dirname(os.path.dirname(__file__)) + '/lib/python'
+pluginPath = os.path.dirname(os.path.dirname(__file__)) + '/plugin'
+os.environ['PYTHONPATH'] = pylibPath + os.pathsep + os.environ.get('PYTHONPATH', '')
+os.environ['PY_NODE_GRAPH_PLUGIN'] = pluginPath + os.pathsep + os.environ.get('PY_NODE_GRAPH_PLUGIN', '')
+sys.path.append(pylibPath)
+
+from pyNodeGraph.ui.nodeGraph import PyNodeGraph
+from pyNodeGraph.ui.app import MainApplication
+from pyNodeGraph.ui.stdio.log_window import get_log_window
+
+
+if __name__ == '__main__':
+    usdFile = ''
+    if len(sys.argv) > 1:
+        usdFile = sys.argv[1]
+
+    app = MainApplication(sys.argv)
+
+    logWindow = get_log_window()
+
+    window = PyNodeGraph()
+    window.show()
+
+    if usdFile != '':
+        window.setFile(usdFile)
+
+    window.mainWindowClosed.connect(logWindow.close)
+
+    sys.exit(app.exec_())
+
